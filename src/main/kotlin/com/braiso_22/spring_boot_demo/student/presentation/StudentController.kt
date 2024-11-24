@@ -23,7 +23,7 @@ class StudentController(
         val createdStudent = studentService.addNewStudent(student)
         ResponseEntity.status(HttpStatus.CREATED).body(createdStudent)
     } catch (e: IllegalStateException) {
-        ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.message)
+        ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ErrorResponse(e.message ?: ""))
     }
 
 
@@ -32,7 +32,7 @@ class StudentController(
         studentService.deleteStudent(id)
         ResponseEntity.noContent().build()
     } catch (e: IllegalStateException) {
-        ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.message)
+        ResponseEntity.status(HttpStatus.NOT_FOUND).body(ErrorResponse(e.message ?: ""))
     }
 
 
@@ -43,6 +43,8 @@ class StudentController(
         studentService.updateStudent(student)
         ResponseEntity.status(HttpStatus.ACCEPTED).body(student)
     } catch (e: IllegalStateException) {
-        ResponseEntity.status(HttpStatus.NOT_MODIFIED).body(e.message)
+        ResponseEntity.status(HttpStatus.NOT_MODIFIED).body(ErrorResponse(e.message ?: ""))
     }
 }
+
+data class ErrorResponse(val message: String = "")
