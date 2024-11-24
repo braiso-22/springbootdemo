@@ -1,7 +1,7 @@
 package com.braiso_22.spring_boot_demo.student.config
 
 import com.braiso_22.spring_boot_demo.student.data.StudentEntity
-import com.braiso_22.spring_boot_demo.student.domain.StudentRepository
+import com.braiso_22.spring_boot_demo.student.data.StudentRepositoryJpa
 import org.springframework.boot.CommandLineRunner
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -11,7 +11,7 @@ import java.time.Month
 @Configuration
 class StudentConfig {
     @Bean
-    fun commandLineRunner(repository: StudentRepository): CommandLineRunner = CommandLineRunner {
+    fun commandLineRunner(repository: StudentRepositoryJpa): CommandLineRunner = CommandLineRunner {
         repository.findAll().ifEmpty {
             repository.saveAll(
                 listOf(

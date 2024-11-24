@@ -28,24 +28,21 @@ class StudentController(
 
 
     @DeleteMapping("/{id}")
-    fun deleteStudent(@PathVariable("id") id: Long): ResponseEntity<Any> {
-        return try {
-            studentService.deleteStudent(id)
-            ResponseEntity.noContent().build()
-        } catch (e: IllegalStateException) {
-            ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.message)
-        }
+    fun deleteStudent(@PathVariable("id") id: Long): ResponseEntity<Any> = try {
+        studentService.deleteStudent(id)
+        ResponseEntity.noContent().build()
+    } catch (e: IllegalStateException) {
+        ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.message)
     }
+
 
     @PutMapping
     fun updateStudent(
         @RequestBody student: Student
-    ): ResponseEntity<Any> {
-        return try {
-            studentService.updateStudent(student)
-            ResponseEntity.status(HttpStatus.ACCEPTED).body(student)
-        } catch (e: IllegalStateException) {
-            ResponseEntity.status(HttpStatus.NOT_MODIFIED).body(e.message)
-        }
+    ): ResponseEntity<Any> = try {
+        studentService.updateStudent(student)
+        ResponseEntity.status(HttpStatus.ACCEPTED).body(student)
+    } catch (e: IllegalStateException) {
+        ResponseEntity.status(HttpStatus.NOT_MODIFIED).body(e.message)
     }
 }
