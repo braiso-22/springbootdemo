@@ -9,4 +9,5 @@ data class Student(
     val email: String,
 ) {
     fun getAge() = birthDate.until(LocalDate.now()).years
+    fun isValidEmail() = email.contains("@") && email.contains(".")
 }

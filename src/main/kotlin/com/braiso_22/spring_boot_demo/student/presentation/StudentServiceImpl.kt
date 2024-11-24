@@ -14,6 +14,10 @@ class StudentServiceImpl(
     override fun getStudents(): List<Student> = studentRepository.findAll()
 
     override fun addNewStudent(student: Student): Student {
+        if(!student.isValidEmail()){
+            throw IllegalStateException("Invalid email")
+        }
+
         val studentFound: Student? = studentRepository.findByEmail(student.email)
         studentFound?.let {
             throw IllegalStateException("Email already exists")
@@ -30,6 +34,10 @@ class StudentServiceImpl(
     }
 
     override fun updateStudent(student: Student) {
+        if(!student.isValidEmail()){
+            throw IllegalStateException("Invalid email")
+        }
+
         val studentFound: Student? = studentRepository.findById(student.id)
         studentFound?.let {
             studentRepository.save(student)
