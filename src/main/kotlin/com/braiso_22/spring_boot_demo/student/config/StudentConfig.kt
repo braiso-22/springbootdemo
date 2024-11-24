@@ -12,23 +12,25 @@ import java.time.Month
 class StudentConfig {
     @Bean
     fun commandLineRunner(repository: StudentRepository): CommandLineRunner = CommandLineRunner {
-        repository.saveAll(
-            listOf(
-                StudentEntity(
-                    name = "Leonard England",
-                    birthDate = LocalDate.of(
-                        1995, Month.APRIL, 4
+        repository.findAll().ifEmpty {
+            repository.saveAll(
+                listOf(
+                    StudentEntity(
+                        name = "Leonard England",
+                        birthDate = LocalDate.of(
+                            1995, Month.APRIL, 4
+                        ),
+                        email = "eleanor.kent@example.com"
                     ),
-                    email = "eleanor.kent@example.com"
-                ),
-                StudentEntity(
-                    name = "Doug Hull",
-                    birthDate = LocalDate.of(
-                        1980, Month.MARCH, 13
-                    ),
-                    email = "henrietta.lane@example.com",
+                    StudentEntity(
+                        name = "Doug Hull",
+                        birthDate = LocalDate.of(
+                            1980, Month.MARCH, 13
+                        ),
+                        email = "henrietta.lane@example.com",
+                    )
                 )
             )
-        )
+        }
     }
 }
