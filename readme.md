@@ -10,6 +10,13 @@ I separated them by interfaces to maintain the domain decoupled.
 
 ## API Entrypoints
 
+### Swagger
+I added the swagger dependency so you can test the endpoints from the explorer in a easy way
+
+### Postman
+I created a postman collection with examples in the root folder of the project,
+so you can import it and execute all of them.
+
 The entry points are these:
 
 - GET http://localhost:8080/student
@@ -17,8 +24,7 @@ The entry points are these:
 - PUT http://localhost:8080/student
 - DELETE http://localhost:8080/student/{id}
 
-I created a postman collection with examples in the root folder of the project,
-so you can import it and execute all of them.
+
 
 ## How to start the project
 
